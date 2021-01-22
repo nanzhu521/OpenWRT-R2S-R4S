@@ -160,4 +160,4 @@ jobs:
           replacesArtifacts: true
           token: ${{ secrets.RELEASES_TOKEN }}
           bodyFile: "body-origin.md"
-          artifacts: ./artifact/*.zip./artifact/*.config
+          artifacts: ./artifact/*.zip,./artifact/*.config
