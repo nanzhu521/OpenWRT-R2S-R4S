@@ -1,6 +1,6 @@
-## OpenWrt NanoPi R2S and R4S Firmware 
+## OpenWrt R2S and R4S Firmware 
 #### ⚠ WARNING: USE IT UNDER YOUR OWN RISK. Non profit use only ⚠ 
-![R2S-OpenWrt-Without-Docker](https://github.com/quintus-lab/Openwrt-R2S-R4S/workflows/OpenWRT-NanoPi-Firmware/badge.svg)
+![OpenWRT for R2S and R4S ](https://github.com/quintus-lab/Openwrt-R2S-R4S/workflows/OpenWRT-NanoPi-Firmware/badge.svg)
 
 ##### Download: [Releases](https://github.com/quintus-lab/Openwrt-R2S/releases) or [Actions](https://github.com/quintus-lab/Openwrt-R2S-R4S/actions) \(Login Needed\)
 - - -
@@ -33,5 +33,6 @@
 
 
 #### Screenshot
-![bootstrap](pic/bootstrap.png)
+![R2S](pic/r2s.png)
+![R4S](pic/r4s.png)
 ![R2S NAT Throughput](pic/NAT_Throughput.jpg)
