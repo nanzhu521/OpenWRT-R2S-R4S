@@ -154,7 +154,7 @@ jobs:
         uses: ncipollo/release-action@v1.7.3
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          name: OpenWrt-R2S FIRMWARES
+          name: OpenWRT-NanoPi-Firmware
           allowUpdates: true
           tag: OpenWrt
           commit: master
