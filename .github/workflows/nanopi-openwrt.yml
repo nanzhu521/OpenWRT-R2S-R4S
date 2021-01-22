@@ -139,7 +139,6 @@ jobs:
           zip R2S-QC-$(date +%Y-%m-%d)-sfs.zip *r2s*squashfs*
           zip R4S-QC-$(date +%Y-%m-%d)-ext4.zip *r4s*ext4*
           zip R4S-QC-$(date +%Y-%m-%d)-sfs.zip *r4s*squashfs*
-          cd ../openwrt
           cp ../openwrt/*.config ./
 
       - name: Upload artifact
