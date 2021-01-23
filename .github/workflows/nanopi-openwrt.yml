@@ -153,9 +153,9 @@ jobs:
         uses: ncipollo/release-action@v1.7.3
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          name: OpenWRT-NanoPi-Firmware
+          name: OpenWRT-R2S-R4S-Firmware
           allowUpdates: true
-          tag: 2021
+          tag: 2011
           commit: master
           replacesArtifacts: true
           token: ${{ secrets.RELEASES_TOKEN }}
