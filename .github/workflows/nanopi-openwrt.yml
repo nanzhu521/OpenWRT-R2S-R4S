@@ -155,7 +155,7 @@ jobs:
         with:
           name: OpenWRT-NanoPi-Firmware
           allowUpdates: true
-          tag: OpenWrt
+          tag: 2021
           commit: master
           replacesArtifacts: true
           token: ${{ secrets.RELEASES_TOKEN }}

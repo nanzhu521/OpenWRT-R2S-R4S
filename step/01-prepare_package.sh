@@ -83,7 +83,7 @@ svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/l
 
 #lean default-settings
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/default-settings package/lean/default-settings
-patch -p1 < ../patches/2003-zzz-default.patch
+patch -p1 < ../patches/2000-zzz-default.patch
 
 # Time stamp with $Build_Date=$(date +%Y.%m.%d)
 echo -e '\nQuintus Build@'$(date "+%Y.%m.%d")'\n'  >> package/base-files/files/etc/banner
