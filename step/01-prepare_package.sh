@@ -8,7 +8,6 @@ clear
 #coremark
 rm -rf feeds/packages/utils/coremark
 rm -rf package/feeds/packages/coremark
-ln -sf ../../../feeds/packages/utils/coremark ./package/addon/coremark
 #svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 #ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 

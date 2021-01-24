@@ -55,14 +55,14 @@ cp -rf ../patches/911-kernel-dma-adjust-default-coherent_pool-to-2MiB.patch targ
 #wget -P target/linux/rockchip/patches-5.4 https://github.com/project-openwrt/openwrt/raw/master/target/linux/rockchip/patches-5.4/911-kernel-dma-adjust-default-coherent_pool-to-2MiB.patch
 
 #3328 add idle patch
-cp -rf ../patches/005-arm64-dts-rockchip-Add-RK3328-idle-state.patch target/linux/rockchip/patches-5.4
+cp -rf ../patches/007-arm64-dts-rockchip-Add-RK3328-idle-state.patch target/linux/rockchip/patches-5.4
 #wget -P target/linux/rockchip/patches-5.4 https://github.com/project-openwrt/openwrt/raw/master/target/linux/rockchip/patches-5.4/005-arm64-dts-rockchip-Add-RK3328-idle-state.patch
 
 #patch i2c0
 cp -f ../patches/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/
 
 #r8168-8.048.03 realtek driver for R4S
-git clone https://github.com/BROBIRD/openwrt-r8168 package/new/r8168
+#git clone https://github.com/BROBIRD/openwrt-r8168 package/new/r8168
 
 #R2S overclock to 1.6G patch
 cp -f ../patches/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/
