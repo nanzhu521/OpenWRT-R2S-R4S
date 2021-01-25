@@ -53,6 +53,9 @@ cp -f ../patches/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches
 #R4S overclock to 2.2g patch
 cp -f ../patches/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/
 
+#r8168-8.048.03 realtek driver for R4S
+git clone https://github.com/BROBIRD/openwrt-r8168 package/new/r8168
+
 #Max connection limite
 sed -i 's/16384/65536/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 

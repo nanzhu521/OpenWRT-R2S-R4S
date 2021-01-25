@@ -12,14 +12,8 @@ git clone https://github.com/natelol/luci-app-oled package/natelol/luci-app-oled
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 svn co https://github.com/fw876/helloworld/trunk/tcping package/lean/tcping
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naiveproxy
-svn co https://github.com/fw876/helloworld/trunk/trojan-go package/lean/trojan-go
 svn co https://github.com/fw876/helloworld/trunk/xray package/lean/xray
-
-#patch ssrp for xray trojan
-#wget -P package/lean https://patch-diff.githubusercontent.com/raw/fw876/helloworld/pull/316.patch
-#pushd package/lean
-#patch -p1 < 316.patch
-#popd
+svn co https://github.com/fw876/helloworld/trunk/ipt2socks-alt package/lean/ipt2socks-alt
 
 #SSRP dependences
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
@@ -27,13 +21,10 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks package/lean/microsocks
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dns2socks package/lean/dns2socks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 package/lean/redsocks2
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/proxychains-ng package/lean/proxychains-ng
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipt2socks package/lean/ipt2socks
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs package/lean/simple-obfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/tcpping package/lean/tcpping
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/dnsforwarder package/lean/dnsforwarder
 
 
 #wrt bw monitor
