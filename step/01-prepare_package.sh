@@ -1,30 +1,10 @@
 #!/bin/bash
 clear
-#Additional package
-#arpbind
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
-#AutoCore
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
-#coremark
+
+# remove other coremark
 rm -rf feeds/packages/utils/coremark
 rm -rf package/feeds/packages/coremark
-#svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
-#ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 
-#ddns script
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_aliyun
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/ddns-scripts_aliyun package/lean/ddns-scripts_dnspod
-
-#scheduled reboot
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
-#Adbyby
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/adbyby package/lean/adbyby
-#gost
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/gost package/ctcgfw/gost
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/luci-app-gost package/ctcgfw/luci-app-gost
-#beardropper
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/luci-app-beardropper package/ctcgfw/luci-app-beardropper
 #OLED display
 git clone https://github.com/natelol/luci-app-oled package/natelol/luci-app-oled
 
@@ -55,8 +35,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/le
 #svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/tcpping package/lean/tcpping
 #svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/dnsforwarder package/lean/dnsforwarder
 
-#clean ram
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-ramfree package/lean/luci-app-ramfree
 
 #wrt bw monitor
 git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
@@ -65,25 +43,6 @@ git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbw
 #iputils
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
 
-#onliner
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/luci-app-onliner package/ctcgfw/luci-app-onliner
-#filetransfer
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-filetransfer package/lean/luci-app-filetransfer
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-lib-fs package/lean/luci-lib-fs
-#tmate
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/tmate package/ctcgfw/tmate
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/msgpack-c package/ctcgfw/msgpack-c
-#cpufreq
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
-#patch -p1 < ../patches/2002-luci-app-freq-r2s.patch
-#turboacc
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/luci-app-turboacc package/ctcgfw/luci-app-turboacc
-#Zerotier
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/lean/luci-app-zerotier
-
-#lean default-settings
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/default-settings package/lean/default-settings
-#patch -p1 < ../patches/2000-zzz-default.patch
 
 # Time stamp with $Build_Date=$(date +%Y.%m.%d)
 echo -e '\nQuintus Build@'$(date "+%Y.%m.%d")'\n'  >> package/base-files/files/etc/banner
