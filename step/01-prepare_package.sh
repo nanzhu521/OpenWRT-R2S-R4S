@@ -25,14 +25,12 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipt2socks package
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs package/lean/simple-obfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 
-
 #wrt bw monitor
 git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 
 #iputils
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
-
 
 # Time stamp with $Build_Date=$(date +%Y.%m.%d)
 echo -e '\nQuintus Build@'$(date "+%Y.%m.%d")'\n'  >> package/base-files/files/etc/banner
@@ -45,6 +43,5 @@ sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 
 #生成默认配置及缓存
 rm -rf .config
-chmod -R 755 ./
 
 exit 0
