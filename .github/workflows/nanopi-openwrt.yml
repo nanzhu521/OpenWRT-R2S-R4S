@@ -94,12 +94,12 @@ jobs:
           cd openwrt
           /bin/bash 03-create_acl_for_luci.sh -a
 
-      - name: Load R2S Config
+      - name: Load Multiple devices Config
         run: |
           cd openwrt
-          mv ../seed/r2s.seed .config
+          mv ../seed/nanopi.seed .config
           make defconfig
-          cp .config  r2s.config
+          cp .config  nanopi_multi.config
 
       - name: Make toolchain-aarch64
         run: |
@@ -107,25 +107,25 @@ jobs:
           let make_process=$(nproc)+1
           make toolchain/install -j${make_process} V=s
 
-      - name: Compile OpenWRT for R2S
+      - name: Compile OpenWRT for R2S & R4S
         run: |
           cd openwrt
           let make_process=$(nproc)+1
           make -j${make_process} V=s || make -j${make_process} V=s
 
-      - name: Load R4S Config
-        run: |
-          cd openwrt
-          mv ../seed/r4s.seed .config
-          make defconfig
-          cp .config  r4s.config
-
-      - name: Compile OpenWRT for R4S
-        run: |
-          cd openwrt
-          let make_process=$(nproc)+1
-          make -j${make_process} V=s || make -j${make_process} V=s
-
+#      - name: Load R4S Config
+#        run: |
+#          cd openwrt
+#          mv ../seed/r4s.seed .config
+#          make defconfig
+#          cp .config  r4s.config
+#
+#      - name: Compile OpenWRT for R4S
+#        run: |
+#          cd openwrt
+#          let make_process=$(nproc)+1
+#          make -j${make_process} V=s || make -j${make_process} V=s
+#
       - name: Organize files
         id: organize
         run: |
