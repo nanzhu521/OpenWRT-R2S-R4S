@@ -194,7 +194,7 @@ index 000000000000..9fb0b0eebee5
 + dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
 +--- /dev/null
 ++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-+@@ -0,0 +1,178 @@
++@@ -0,0 +1,185 @@
 ++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 ++/*
 ++ * Copyright (c) 2020 Jensen Huang <jensenhuang@friendlyarm.com>
@@ -313,10 +313,17 @@ index 000000000000..9fb0b0eebee5
 ++	num-lanes = <1>;
 ++	vpcie3v3-supply = <&vcc3v3_sys>;
 ++
-++	pcie@0 {
+++	pcie@0,0 {
 ++		reg = <0x00000000 0 0 0 0>;
 ++		#address-cells = <3>;
 ++		#size-cells = <2>;
+++
+++	pcie-eth@1,0 {
+++			compatible = "realtek,rtl8168";
+++			reg = <0x00010000 0 0 0 0>;
+++
+++			realtek,led-data = <0x870>;
+++		};
 ++	};
 ++};
 ++

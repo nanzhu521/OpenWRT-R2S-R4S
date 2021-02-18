@@ -29,15 +29,12 @@ patch -p1 < ../patches/1001-dnsmasq_add_filter_aaaa_option.patch
 cp -f ../patches/910-mini-ttl.patch package/network/services/dnsmasq/patches/
 cp -f ../patches/911-dnsmasq-filter-aaaa.patch package/network/services/dnsmasq/patches/
 
-#Fullcone & Shortcut-FE patch
-patch -p1 < ../patches/1002-add-fullconenat-and-shortcut-fe-support.patch
-
+#Fullcone patch
+patch -p1 < ../patches/1002-add-fullconenat-support.patch
+patch -p1 < ../patches/1003-luci-app-firewall_add_fullcone.patch
 #update curl
 rm -rf ./package/network/utils/curl
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/curl package/network/utils/curl
-#Change Cryptodev-linux
-rm -rf ./package/kernel/cryptodev-linux
-cp -rf ../modules/cryptodev-linux/ package/kernel/cryptodev-linux
 
 # dma patch
 cp -rf ../patches/911-kernel-dma-adjust-default-coherent_pool-to-2MiB.patch target/linux/rockchip/patches-5.4
@@ -54,7 +51,7 @@ cp -f ../patches/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches
 cp -f ../patches/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch ./target/linux/rockchip/patches-5.4/
 
 #r8168-8.048.03 realtek driver for R4S
-git clone https://github.com/BROBIRD/openwrt-r8168 package/new/r8168
+#git clone https://github.com/BROBIRD/openwrt-r8168 package/new/r8168
 
 # patch cpuinfo display modelname
 wget https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3829.patch
