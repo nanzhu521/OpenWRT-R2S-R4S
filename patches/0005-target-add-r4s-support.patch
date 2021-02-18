@@ -1,7 +1,14 @@
-From 203301a2d44b89d201d855b3cfebb840ee248f05 Mon Sep 17 00:00:00 2001
+From 8c841a734925e412a343d6ddf21bc22b2c850c5a Mon Sep 17 00:00:00 2001
 From: Tianling Shen <cnsztl@gmail.com>
 Date: Fri, 25 Dec 2020 20:03:14 +0800
 Subject: [PATCH] rockchip: add NanoPi R4S support
+ 	modified:   target/linux/rockchip/Makefile
+  	modified:   target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
+   	modified:   target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+   	modified:   target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity 
+   	modified:   target/linux/rockchip/image/armv8.mk 	
+   	new file:   target/linux/rockchip/image/nanopi-r4s.bootscript 	
+   	new file:   target/linux/rockchip/patches-5.4/200-rockchip-rk3399-Add-support-for-FriendlyARM-NanoPi-R.patch
 
 Hardware
 --------
@@ -23,23 +30,24 @@ Co-authored-by: Jensen Huang <jensenhuang@friendlyarm.com>
 Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
 Co-authored-by: Marty Jones <mj8263788@gmail.com>
 Signed-off-by: Marty Jones <mj8263788@gmail.com>
+
 ---
  target/linux/rockchip/Makefile                |   2 +-
  .../armv8/base-files/etc/board.d/01_leds      |   3 +-
- .../armv8/base-files/etc/board.d/02_network   |   6 +-
+ .../armv8/base-files/etc/board.d/02_network   |  12 +-
  .../etc/hotplug.d/net/40-net-smp-affinity     |   4 +
  target/linux/rockchip/image/armv8.mk          |  10 +
  .../rockchip/image/nanopi-r4s.bootscript      |   8 +
- ...Add-support-for-FriendlyARM-NanoPi-R.patch | 218 ++++++++++++++++++
- 7 files changed, 247 insertions(+), 4 deletions(-)
+ ...Add-support-for-FriendlyARM-NanoPi-R.patch | 225 ++++++++++++++++++
+ 7 files changed, 257 insertions(+), 7 deletions(-)
  create mode 100644 target/linux/rockchip/image/nanopi-r4s.bootscript
  create mode 100644 target/linux/rockchip/patches-5.4/200-rockchip-rk3399-Add-support-for-FriendlyARM-NanoPi-R.patch
 
 diff --git a/target/linux/rockchip/Makefile b/target/linux/rockchip/Makefile
-index 8daaad34a741..02db522ab682 100644
+index bcc0cc3f8f..4996b434f0 100644
 --- a/target/linux/rockchip/Makefile
 +++ b/target/linux/rockchip/Makefile
-@@ -6,7 +6,7 @@ include $(TOPDIR)/rules.mk
+@@ -4,7 +4,7 @@ include $(TOPDIR)/rules.mk
  
  BOARD:=rockchip
  BOARDNAME:=Rockchip
@@ -49,7 +57,7 @@ index 8daaad34a741..02db522ab682 100644
  
  KERNEL_PATCHVER=5.4
 diff --git a/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds b/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
-index bba3e2aa566f..77655d426a4e 100755
+index bba3e2aa56..77655d426a 100755
 --- a/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 +++ b/target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
 @@ -9,7 +9,8 @@ boardname="${board##*,}"
@@ -63,12 +71,12 @@ index bba3e2aa566f..77655d426a4e 100755
  	ucidef_set_led_netdev "lan" "LAN" "$boardname:green:lan" "eth1"
  	;;
 diff --git a/target/linux/rockchip/armv8/base-files/etc/board.d/02_network b/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-index 48133c81a1..d8acaabe27
+index 48133c81a1..d8acaabe27 100755
 --- a/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 +++ b/target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 @@ -8,7 +8,8 @@ rockchip_setup_interfaces()
  	local board="$1"
-
+ 
  	case "$board" in
 -	friendlyarm,nanopi-r2s)
 +	friendlyarm,nanopi-r2s|\
@@ -79,7 +87,7 @@ index 48133c81a1..d8acaabe27
 @@ -17,9 +18,9 @@ rockchip_setup_interfaces()
  	esac
  }
-
+ 
 -nanopi_r2s_generate_mac()
 +nanopi_generate_mac()
  {
@@ -90,7 +98,7 @@ index 48133c81a1..d8acaabe27
  }
 @@ -32,8 +33,9 @@ rockchip_setup_macs()
  	local label_mac=""
-
+ 
  	case "$board" in
 -	friendlyarm,nanopi-r2s)
 -		wan_mac=$(nanopi_r2s_generate_mac)
@@ -101,7 +109,7 @@ index 48133c81a1..d8acaabe27
  		;;
  	esac
 diff --git a/target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity b/target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-index 44716258bf2d..9e4a4cf4fceb 100644
+index 44716258bf..9e4a4cf4fc 100644
 --- a/target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 +++ b/target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 @@ -26,5 +26,9 @@ friendlyarm,nanopi-r2s)
@@ -115,10 +123,10 @@ index 44716258bf2d..9e4a4cf4fceb 100644
  esac
  
 diff --git a/target/linux/rockchip/image/armv8.mk b/target/linux/rockchip/image/armv8.mk
-index 4a46cb7336c3..c2912181c3d4 100644
+index 24b1c38137..b1ff32dadb 100644
 --- a/target/linux/rockchip/image/armv8.mk
 +++ b/target/linux/rockchip/image/armv8.mk
-@@ -15,6 +15,16 @@ define Device/friendlyarm_nanopi-r2s
+@@ -12,6 +12,16 @@ define Device/friendlyarm_nanopi-r2s
  endef
  TARGET_DEVICES += friendlyarm_nanopi-r2s
  
@@ -137,7 +145,7 @@ index 4a46cb7336c3..c2912181c3d4 100644
    DEVICE_MODEL := RockPro64
 diff --git a/target/linux/rockchip/image/nanopi-r4s.bootscript b/target/linux/rockchip/image/nanopi-r4s.bootscript
 new file mode 100644
-index 000000000000..abe9c24ee330
+index 0000000000..abe9c24ee3
 --- /dev/null
 +++ b/target/linux/rockchip/image/nanopi-r4s.bootscript
 @@ -0,0 +1,8 @@
@@ -151,10 +159,10 @@ index 000000000000..abe9c24ee330
 +booti ${kernel_addr_r} - ${fdt_addr_r}
 diff --git a/target/linux/rockchip/patches-5.4/200-rockchip-rk3399-Add-support-for-FriendlyARM-NanoPi-R.patch b/target/linux/rockchip/patches-5.4/200-rockchip-rk3399-Add-support-for-FriendlyARM-NanoPi-R.patch
 new file mode 100644
-index 000000000000..9fb0b0eebee5
+index 0000000000..8bc8024c8d
 --- /dev/null
 +++ b/target/linux/rockchip/patches-5.4/200-rockchip-rk3399-Add-support-for-FriendlyARM-NanoPi-R.patch
-@@ -0,0 +1,218 @@
+@@ -0,0 +1,225 @@
 +From 11c2b38cf0a04b0edb3eabae24fb1484489725e2 Mon Sep 17 00:00:00 2001
 +From: Tianling Shen <cnsztl@gmail.com>
 +Date: Fri, 8 Jan 2021 07:12:30 +0000
@@ -318,7 +326,7 @@ index 000000000000..9fb0b0eebee5
 ++		#address-cells = <3>;
 ++		#size-cells = <2>;
 ++
-++	pcie-eth@1,0 {
+++		pcie-eth@1,0 {
 ++			compatible = "realtek,rtl8168";
 ++			reg = <0x00010000 0 0 0 0>;
 ++
@@ -380,3 +388,6 @@ index 000000000000..9fb0b0eebee5
 ++&vcc3v3_sys {
 ++	vin-supply = <&vcc5v0_sys>;
 ++};
+-- 
+2.28.0
+
