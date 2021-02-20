@@ -157,6 +157,7 @@ jobs:
           allowUpdates: true
           tag: 2011
           commit: master
+          omitName: true
           replacesArtifacts: true
           token: ${{ secrets.RELEASES_TOKEN }}
           bodyFile: "body-origin.md"
