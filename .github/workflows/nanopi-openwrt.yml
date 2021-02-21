@@ -72,13 +72,15 @@ jobs:
 
       - name: Install OpenWrt source
         run: |
-          git clone -b openwrt-21.02 --single-branch https://git.openwrt.org/openwrt/openwrt.git openwrt
+#          git clone -b openwrt-21.02 --single-branch https://git.openwrt.org/openwrt/openwrt.git openwrt
+          git clone -b master --single-branch https://git.openwrt.org/openwrt/openwrt.git openwrt
 
       - name: Prepare openwrt
         run: |
           cd openwrt
           cp -r ../step/* ./
-          /bin/bash 00-prepare_openwrt.sh
+#          /bin/bash 00-prepare_openwrt.sh
+          /bin/bash 00-prepare_5.10.sh
 
       - name: Prepare application packages
         run: |
