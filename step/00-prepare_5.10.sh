@@ -32,7 +32,7 @@ patch -p1 < ../patches/1003-luci-app-firewall_add_fullcone.patch
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/curl package/network/utils/curl
 
 #R2S overclock to 1.6G patch
-cp -f ../patches/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/
+#cp -f ../patches/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/
 
 # patch cpuinfo display modelname
 patch -p1 < ../patches/3829.patch
