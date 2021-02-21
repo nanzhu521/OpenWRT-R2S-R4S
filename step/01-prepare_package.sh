@@ -38,7 +38,7 @@ sed -i '/DISTRIB_REVISION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_REVISION='$(date "+%Y.%m.%d")'" >> package/base-files/files/etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' package/base-files/files/etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='Quintus Build@$(date "+%Y.%m.%d")'" >> package/base-files/files/etc/openwrt_release
-sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
+#sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 #echo 'luciversion = "Quintus@🇨🇦🇹🇼🇺🇸🇭🇰"' >> feeds/luci/modules/luci-base/luasrc/version.lua
 
 #生成默认配置及缓存
