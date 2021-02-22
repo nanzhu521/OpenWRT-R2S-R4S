@@ -26,7 +26,9 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs packa
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
 #temp
 wget https://patch-diff.githubusercontent.com/raw/fw876/helloworld/pull/394.patch
+pushd package/lean/
 patch -p1 < ../patches/394.patch
+popd
 
 #wrt bw monitor
 git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
