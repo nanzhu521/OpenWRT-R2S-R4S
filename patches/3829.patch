@@ -22,7 +22,7 @@ diff --git a/target/linux/generic/hack-5.10/310-arm64-cpuinfo-Add-model-name-in-
 new file mode 100644
 index 000000000000..266475830442
 --- /dev/null
-+++ b/target/linux/generic/hack-5.4/310-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
++++ b/target/linux/generic/hack-5.10/310-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 @@ -0,0 +1,38 @@
 +From: Sumit Gupta <sumitg@nvidia.com>
 +To: <catalin.marinas@arm.com>, <linux-arm-kernel@lists.infradead.org>,
