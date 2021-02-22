@@ -13,8 +13,6 @@ on:
     paths:
       - '.github/workflows/nanopi-openwrt.yml'
       - 'step/01-prepare_package.sh'
-      - 'seed/r2s.seed'
-      - 'seed/r4s.seed'
       - 'seed/nanopi.seed'
   schedule:
     - cron: 35 20 * * *
@@ -154,9 +152,9 @@ jobs:
         uses: ncipollo/release-action@v1.8.0
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         with:
-          name: OpenWRT-R2S-R4S-Firmware
+          name: OpenWRT-R2S-R4S-K510
           allowUpdates: true
-          tag: 2011
+          tag: K510
           commit: master
           omitName: true
           replacesArtifacts: true
